@@ -20,7 +20,7 @@
         }
 
         .centered-rectangle {
-            background-color: black;
+            background-color: black; /* Cambiado a negro */
             border-radius: 20px;
             width: 600px;
             height: 300px;
@@ -77,7 +77,7 @@
         }
 
         .level-rectangle {
-            background-color: #C10016;
+            background-color: black; /* Cambiado a negro */
             border-radius: 10px;
             width: 200px;
             height: 80px;
@@ -92,7 +92,7 @@
         }
 
         .level-text {
-            color: white;
+            color: #C10016; /* Cambiado a rojo */
             font-weight: bold;
             text-transform: uppercase;
             margin-top: 5px;
@@ -168,16 +168,213 @@
 <body>
     <div class="level-container">
         <div class="level-rectangle level1-button">
-            <div class="level-text">Level 1</div>
-            <div class="level-text">Perception</div>
+            <div class="level-text">X</div> <!-- Cambiado el texto -->
         </div>
         <div class="level-rectangle level2-button">
-            <div class="level-text">Level 2</div>
-            <div class="level-text">Connection</div>
+            <div class="level-text">XX</div> <!-- Cambiado el texto -->
         </div>
         <div class="level-rectangle level3-button">
-            <div class="level-text">Level 3</div>
-            <div class="level-text">Reflection</div>
+            <div class="level-text">XXX</div> <!-- Cambiado el texto -->
+        </div>
+    </div>
+
+    <div class="centered-rectangle" id="question-box">
+        <div class="text-box large" id="question-text">
+            Choose a level and press "Next card" to start
+        </div>
+        <div class="text-box small" id="small-text">
+            We are not really strangers online
+        </div>
+    </div>
+
+    <div class="next-card-rectangle">
+        <div class="next-card-text">Next card</div>
+    </div>
+
+    <div class="navigation-container">
+        <div class="navigation-rectangle white" onclick="window.location.href='index.html'">
+            <div class="navigation-text red">WNRS</div>
+        </div>
+        <div class="navigation-rectangle black" onclick="window.location.href='index-alternative.html'">
+            <div class="navigation-text red">XXX</div>
+        </
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wnrs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@700&display=swap');
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        .centered-rectangle {
+            background-color: black; /* Cambiado a negro */
+            border-radius: 20px;
+            width: 600px;
+            height: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                        0 6px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+            transition: background-color 0.3s, color 0.3s; /* Transición para suavizar el cambio de apariencia */
+        }
+
+        .alternate-centered-rectangle {
+            background-color: #C10016;
+            color: white;
+        }
+
+        .text-box {
+            width: calc(100% - 70px); /* Hacer que las cajas de texto ocupen el 100% del ancho del rectángulo menos 70px para los márgenes */
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0 35px; /* Margen de 35px a derecha e izquierda */
+            box-sizing: border-box; /* Incluir el padding en el cálculo del ancho */
+        }
+
+        .text-box.large {
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #C10016; /* Color de texto por defecto */
+        }
+
+        .text-box.small {
+            font-size: 14px;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #C10016; /* Color de texto por defecto */
+        }
+
+        .level-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .level-rectangle {
+            background-color: black; /* Cambiado a negro */
+            border-radius: 10px;
+            width: 200px;
+            height: 80px;
+            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1), 
+                        0 6px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .level-text {
+            color: #C10016; /* Cambiado a rojo */
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        .next-card-rectangle {
+            background-color: #C10016;
+            border-radius: 10px;
+            width: 200px;
+            height: 50px;
+            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1), 
+                        0 6px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 70px; /* Añadido espacio para los nuevos botones */
+        }
+
+        .next-card-text {
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navigation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation-rectangle {
+            border-radius: 10px;
+            width: 150px; /* Reducido un 25% */
+            height: 60px; /* Reducido un 25% */
+            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1), 
+                        0 6px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .navigation-rectangle.white {
+            background-color: white;
+        }
+
+        .navigation-rectangle.black {
+            background-color: black;
+        }
+
+        .navigation-rectangle.red {
+            background-color: #C10016;
+        }
+
+        .navigation-text {
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .navigation-text.red {
+            color: #C10016;
+        }
+
+        .navigation-text.white {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="level-container">
+        <div class="level-rectangle level1-button">
+            <div class="level-text">X</div> <!-- Cambiado el texto -->
+        </div>
+        <div class="level-rectangle level2-button">
+            <div class="level-text">XX</div> <!-- Cambiado el texto -->
+        </div>
+        <div class="level-rectangle level3-button">
+            <div class="level-text">XXX</div> <!-- Cambiado el texto -->
         </div>
     </div>
 
@@ -280,3 +477,4 @@
     </script>
 </body>
 </html>
+
