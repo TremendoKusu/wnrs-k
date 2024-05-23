@@ -109,12 +109,59 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            margin-bottom: 70px; /* Añadido espacio para los nuevos botones */
         }
 
         .next-card-text {
             color: white;
             font-weight: bold;
             text-transform: uppercase;
+        }
+
+        .navigation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navigation-rectangle {
+            border-radius: 10px;
+            width: 150px; /* Reducido un 25% */
+            height: 60px; /* Reducido un 25% */
+            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1), 
+                        0 6px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .navigation-rectangle.white {
+            background-color: white;
+        }
+
+        .navigation-rectangle.black {
+            background-color: black;
+        }
+
+        .navigation-rectangle.red {
+            background-color: #C10016;
+        }
+
+        .navigation-text {
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .navigation-text.red {
+            color: #C10016;
+        }
+
+        .navigation-text.white {
+            color: white;
         }
     </style>
 </head>
@@ -136,7 +183,7 @@
 
     <div class="centered-rectangle" id="question-box">
         <div class="text-box large" id="question-text">
-            Pregunta
+            Choose a level and press "Next card" to start
         </div>
         <div class="text-box small" id="small-text">
             We are not really strangers online
@@ -145,6 +192,18 @@
 
     <div class="next-card-rectangle">
         <div class="next-card-text">Next card</div>
+    </div>
+
+    <div class="navigation-container">
+        <div class="navigation-rectangle white" onclick="window.location.href='index.html'">
+            <div class="navigation-text red">WNRS</div>
+        </div>
+        <div class="navigation-rectangle black" onclick="window.location.href='index-alternative.html'">
+            <div class="navigation-text red">XXX</div>
+        </div>
+        <div class="navigation-rectangle red" onclick="window.location.href='index-alternative2.html'">
+            <div class="navigation-text white">MIX</div>
+        </div>
     </div>
 
     <script>
