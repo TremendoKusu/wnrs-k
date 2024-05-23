@@ -109,59 +109,12 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            margin-bottom: 70px; /* Añadido espacio para los nuevos botones */
         }
 
         .next-card-text {
             color: white;
             font-weight: bold;
             text-transform: uppercase;
-        }
-
-        .navigation-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .navigation-rectangle {
-            border-radius: 10px;
-            width: 150px; /* Reducido un 25% */
-            height: 60px; /* Reducido un 25% */
-            box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1), 
-                        0 6px 20px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 10px;
-            cursor: pointer;
-        }
-
-        .navigation-rectangle.white {
-            background-color: white;
-        }
-
-        .navigation-rectangle.black {
-            background-color: black;
-        }
-
-        .navigation-rectangle.red {
-            background-color: #C10016;
-        }
-
-        .navigation-text {
-            font-weight: bold;
-            text-transform: uppercase;
-            text-align: center;
-        }
-
-        .navigation-text.red {
-            color: #C10016;
-        }
-
-        .navigation-text.white {
-            color: white;
         }
     </style>
 </head>
@@ -183,42 +136,15 @@
 
     <div class="centered-rectangle" id="question-box">
         <div class="text-box large" id="question-text">
-            Choose a level and press "Next card" to start
+            Pregunta
         </div>
         <div class="text-box small" id="small-text">
             We are not really strangers online
+        </div>
     </div>
 
     <div class="next-card-rectangle">
         <div class="next-card-text">Next card</div>
-    </div>
-
-    <div class="navigation-container">
-        <div class="navigation-rectangle white" onclick="window.location.href='index.html'">
-            <div class="navigation-text red">WNRS</div>
-        </div>
-        <div class="navigation-rectangle black" onclick="window.location.href='index-alternative.html'">
-            <div class="navigation-text red">XXX</div>
-        </div>
-        <div class="navigation-rectangle red" onclick="window.location.href='index-alternative2.html'">
-            <div class="navigation-text white">MIX</div>
-        </div>
-    </div>
-
-    <div class="next-card-rectangle" style="margin-top: 10px;">
-        <div class="next-card-text">Next card</div>
-    </div>
-
-    <div class="navigation-container" style="margin-top: 50px;">
-        <div class="navigation-rectangle white" onclick="window.location.href='index.html'">
-            <div class="navigation-text red">WNRS</div>
-        </div>
-        <div class="navigation-rectangle black" onclick="window.location.href='index-alternative.html'">
-            <div class="navigation-text red">XXX</div>
-        </div>
-        <div class="navigation-rectangle red" onclick="window.location.href='index-alternative2.html'">
-            <div class="navigation-text white">MIX</div>
-        </div>
     </div>
 
     <script>
@@ -242,58 +168,56 @@
                 .then(data => questionsLevel3 = data);
         }
 
-        window.onload = function() {
-            loadQuestions();
+        window.onload = loadQuestions;
 
-            document.querySelector('.level1-button').addEventListener('click', () => {
-                currentQuestions = questionsLevel1.slice();
-                displayedQuestions.clear();
-            });
+        document.querySelector('.level1-button').addEventListener('click', () => {
+            currentQuestions = questionsLevel1.slice();
+            displayedQuestions.clear();
+        });
 
-            document.querySelector('.level2-button').addEventListener('click', () => {
-                currentQuestions = questionsLevel2.slice();
-                displayedQuestions.clear();
-            });
+        document.querySelector('.level2-button').addEventListener('click', () => {
+            currentQuestions = questionsLevel2.slice();
+            displayedQuestions.clear();
+        });
 
-            document.querySelector('.level3-button').addEventListener('click', () => {
-                currentQuestions = questionsLevel3.slice();
-                displayedQuestions.clear();
-            });
+        document.querySelector('.level3-button').addEventListener('click', () => {
+            currentQuestions = questionsLevel3.slice();
+            displayedQuestions.clear();
+        });
 
-            document.querySelector('.next-card-rectangle').addEventListener('click', () => {
-                if (currentQuestions.length > 0) {
-                    let availableQuestions = currentQuestions.filter(q => !displayedQuestions.has(q));
-                    if (availableQuestions.length === 0) {
-                        alert('No more new questions available at this level!');
-                        return;
-                    }
-
-                    const randomIndex = Math.floor(Math.random() * availableQuestions.length);
-                    const question = availableQuestions[randomIndex];
-                    const questionBox = document.getElementById('question-box');
-                    const questionText = document.getElementById('question-text');
-                    const smallText = document.getElementById('small-text'); // Selecciona el texto pequeño
-
-                    displayedQuestions.add(question); // Añade la pregunta al conjunto de preguntas mostradas
-
-                    if (question.startsWith("WILDCARD")) {
-                        questionBox.classList.add('alternate-centered-rectangle');
-                        questionText.style.color = "white"; // Cambia el color del texto principal a blanco
-                        smallText.style.color = "white"; // Cambia el color del texto pequeño a blanco
-
-                        const wildcardText = question.split("WILDCARD")[1].trim();
-                        questionText.innerHTML = `WILDCARD<br>${wildcardText}`; // Divide "WILDCARD" en una línea diferente
-                    } else {
-                        questionBox.classList.remove('alternate-centered-rectangle'); // Elimina la clase de apariencia alternativa si no hay "WILDCARD"
-                        questionText.style.color = "#C10016"; // Restaura el color del texto principal a rojo
-                        smallText.style.color = "#C10016"; // Restaura el color del texto pequeño a rojo
-                        questionText.innerText = question; // Actualiza el texto de la pregunta
-                    }
-                } else {
-                    alert('Please select a level first!');
+        document.querySelector('.next-card-rectangle').addEventListener('click', () => {
+            if (currentQuestions.length > 0) {
+                let availableQuestions = currentQuestions.filter(q => !displayedQuestions.has(q));
+                if (availableQuestions.length === 0) {
+                    alert('No more new questions available at this level!');
+                    return;
                 }
-            });
-        };
+
+                const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+                const question = availableQuestions[randomIndex];
+                const questionBox = document.getElementById('question-box');
+                const questionText = document.getElementById('question-text');
+                const smallText = document.getElementById('small-text'); // Selecciona el texto pequeño
+
+                displayedQuestions.add(question); // Añade la pregunta al conjunto de preguntas mostradas
+
+                if (question.startsWith("WILDCARD")) {
+                    questionBox.classList.add('alternate-centered-rectangle');
+                    questionText.style.color = "white"; // Cambia el color del texto principal a blanco
+                    smallText.style.color = "white"; // Cambia el color del texto pequeño a blanco
+
+                    const wildcardText = question.split("WILDCARD")[1].trim();
+                    questionText.innerHTML = `WILDCARD<br>${wildcardText}`; // Divide "WILDCARD" en una línea diferente
+                } else {
+                    questionBox.classList.remove('alternate-centered-rectangle'); // Elimina la clase de apariencia alternativa si no hay "WILDCARD"
+                    questionText.style.color = "#C10016"; // Restaura el color del texto principal a rojo
+                    smallText.style.color = "#C10016"; // Restaura el color del texto pequeño a rojo
+                    questionText.innerText = question; // Actualiza el texto de la pregunta
+                }
+            } else {
+                alert('Please select a level first!');
+            }
+        });
     </script>
 </body>
 </html>
