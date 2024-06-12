@@ -210,18 +210,21 @@
         let currentQuestions = [];
         let displayedQuestions = new Set();
 
-        function loadQuestions() {
+function loadQuestions() {
             fetch('level1-alternative.json')
                 .then(response => response.json())
-                .then(data => questionsLevel1 = data);
+                .then(data => questionsLevel1 = data)
+                .catch(error => console.error('Error cargando las preguntas del nivel 1:', error));
 
             fetch('level2-alternative.json')
                 .then(response => response.json())
-                .then(data => questionsLevel2 = data);
+                .then(data => questionsLevel2 = data)
+                .catch(error => console.error('Error cargando las preguntas del nivel 2:', error));
 
             fetch('level3-alternative.json')
                 .then(response => response.json())
-                .then(data => questionsLevel3 = data);
+                .then(data => questionsLevel3 = data)
+                .catch(error => console.error('Error cargando las preguntas del nivel 3:', error));
         }
 
         window.onload = loadQuestions;
