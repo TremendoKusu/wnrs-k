@@ -259,8 +259,8 @@
 
                 if (question.startsWith("WILDCARD")) {
                     questionBox.classList.add('alternate-centered-rectangle');
-                    questionText.style.color = "#C10016"; // Cambia el color del texto principal a blanco
-                    smallText.style.color = "#C10016"; // Cambia el color del texto pequeño a blanco
+                    questionText.style.color = "#C10016"; // Cambia el color del texto principal a rojo
+                    smallText.style.color = "#C10016"; // Cambia el color del texto pequeño a rojo
 
                     const wildcardText = question.split("WILDCARD")[1].trim();
                     questionText.innerHTML = `WILDCARD<br>${wildcardText}`; // Divide "WILDCARD" en una línea diferente
