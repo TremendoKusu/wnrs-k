@@ -20,7 +20,7 @@
         }
 
         .centered-rectangle {
-            background-color: white;
+            background-color: black;
             border-radius: 20px;
             width: 600px;
             height: 300px;
@@ -39,8 +39,8 @@
         }
 
         .alternate-centered-rectangle {
-            background-color: black;
-            color: black;
+            background-color: #C10016;
+            color: white;
         }
 
         .text-box {
@@ -183,7 +183,7 @@
             Choose a level and press "Next card" to start
         </div>
         <div class="text-box small" id="small-text">
-            XXX<br>We are not really strangers online
+            We are not really strangers online
         </div>
     </div>
 
@@ -211,30 +211,17 @@
         let displayedQuestions = new Set();
 
         function loadQuestions() {
-            console.log('Cargando preguntas...');
             fetch('level1-alternative.json')
                 .then(response => response.json())
-                .then(data => {
-                    questionsLevel1 = data;
-                    console.log('Preguntas del nivel 1 cargadas:', questionsLevel1);
-                })
-                .catch(error => console.error('Error cargando las preguntas del nivel 1:', error));
+                .then(data => questionsLevel1 = data);
 
             fetch('level2-alternative.json')
                 .then(response => response.json())
-                .then(data => {
-                    questionsLevel2 = data;
-                    console.log('Preguntas del nivel 2 cargadas:', questionsLevel2);
-                })
-                .catch(error => console.error('Error cargando las preguntas del nivel 2:', error));
+                .then(data => questionsLevel2 = data);
 
             fetch('level3-alternative.json')
                 .then(response => response.json())
-                .then(data => {
-                    questionsLevel3 = data;
-                    console.log('Preguntas del nivel 3 cargadas:', questionsLevel3);
-                })
-                .catch(error => console.error('Error cargando las preguntas del nivel 3:', error));
+                .then(data => questionsLevel3 = data);
         }
 
         window.onload = loadQuestions;
@@ -242,19 +229,16 @@
         document.querySelector('.level1-button').addEventListener('click', () => {
             currentQuestions = questionsLevel1.slice();
             displayedQuestions.clear();
-            console.log('Nivel 1 seleccionado. Preguntas:', currentQuestions);
         });
 
         document.querySelector('.level2-button').addEventListener('click', () => {
             currentQuestions = questionsLevel2.slice();
             displayedQuestions.clear();
-            console.log('Nivel 2 seleccionado. Preguntas:', currentQuestions);
         });
 
         document.querySelector('.level3-button').addEventListener('click', () => {
             currentQuestions = questionsLevel3.slice();
             displayedQuestions.clear();
-            console.log('Nivel 3 seleccionado. Preguntas:', currentQuestions);
         });
 
         document.querySelector('.next-card-rectangle').addEventListener('click', () => {
@@ -275,8 +259,8 @@
 
                 if (question.startsWith("WILDCARD")) {
                     questionBox.classList.add('alternate-centered-rectangle');
-                    questionText.style.color = "#C10016"; // Cambia el color del texto principal a blanco
-                    smallText.style.color = "#C10016"; // Cambia el color del texto pequeño a blanco
+                    questionText.style.color = "white"; // Cambia el color del texto principal a blanco
+                    smallText.style.color = "white"; // Cambia el color del texto pequeño a blanco
 
                     const wildcardText = question.split("WILDCARD")[1].trim();
                     questionText.innerHTML = `WILDCARD<br>${wildcardText}`; // Divide "WILDCARD" en una línea diferente
