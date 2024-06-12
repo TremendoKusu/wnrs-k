@@ -210,20 +210,30 @@
         let currentQuestions = [];
         let displayedQuestions = new Set();
 
-function loadQuestions() {
+        function loadQuestions() {
+            console.log('Cargando preguntas...');
             fetch('level1-alternative.json')
                 .then(response => response.json())
-                .then(data => questionsLevel1 = data)
+                .then(data => {
+                    questionsLevel1 = data;
+                    console.log('Preguntas del nivel 1 cargadas:', questionsLevel1);
+                })
                 .catch(error => console.error('Error cargando las preguntas del nivel 1:', error));
 
             fetch('level2-alternative.json')
                 .then(response => response.json())
-                .then(data => questionsLevel2 = data)
+                .then(data => {
+                    questionsLevel2 = data;
+                    console.log('Preguntas del nivel 2 cargadas:', questionsLevel2);
+                })
                 .catch(error => console.error('Error cargando las preguntas del nivel 2:', error));
 
             fetch('level3-alternative.json')
                 .then(response => response.json())
-                .then(data => questionsLevel3 = data)
+                .then(data => {
+                    questionsLevel3 = data;
+                    console.log('Preguntas del nivel 3 cargadas:', questionsLevel3);
+                })
                 .catch(error => console.error('Error cargando las preguntas del nivel 3:', error));
         }
 
@@ -232,16 +242,19 @@ function loadQuestions() {
         document.querySelector('.level1-button').addEventListener('click', () => {
             currentQuestions = questionsLevel1.slice();
             displayedQuestions.clear();
+            console.log('Nivel 1 seleccionado. Preguntas:', currentQuestions);
         });
 
         document.querySelector('.level2-button').addEventListener('click', () => {
             currentQuestions = questionsLevel2.slice();
             displayedQuestions.clear();
+            console.log('Nivel 2 seleccionado. Preguntas:', currentQuestions);
         });
 
         document.querySelector('.level3-button').addEventListener('click', () => {
             currentQuestions = questionsLevel3.slice();
             displayedQuestions.clear();
+            console.log('Nivel 3 seleccionado. Preguntas:', currentQuestions);
         });
 
         document.querySelector('.next-card-rectangle').addEventListener('click', () => {
@@ -261,9 +274,7 @@ function loadQuestions() {
                 displayedQuestions.add(question); // Añade la pregunta al conjunto de preguntas mostradas
 
                 if (question.startsWith("WILDCARD")) {
-                    questionBox.classList.add('alternate-centered
-
--rectangle');
+                    questionBox.classList.add('alternate-centered-rectangle');
                     questionText.style.color = "#C10016"; // Cambia el color del texto principal a blanco
                     smallText.style.color = "#C10016"; // Cambia el color del texto pequeño a blanco
 
